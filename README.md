@@ -32,7 +32,7 @@ Works on iOS, Android, macOS, Windows and Linux. On the web it sends, but cannot
 **2. Wrap `runApp`.** `Tailcove.runApp` sets up Flutter, starts the client and hooks Flutter's error handlers, then runs your app:
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tailcove_flutter/tailcove_flutter.dart';
 
 void main() {
@@ -73,7 +73,8 @@ try {
 Route changes become breadcrumbs with the navigator observer:
 
 ```dart
-MaterialApp(navigatorObservers: [TailcoveNavigatorObserver()], home: const HomePage());
+// On your MaterialApp, CupertinoApp or WidgetsApp:
+navigatorObservers: [TailcoveNavigatorObserver()],
 ```
 
 Add a step without sending a line: `Tailcove.instance.addBreadcrumb('Tapped pay')`.
