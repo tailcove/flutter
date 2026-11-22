@@ -1,0 +1,12 @@
+analyzer:
+  exclude:
+    - build/**
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_final_locals
+    - always_declare_return_types
+
+formatter:
+  page_width: 120

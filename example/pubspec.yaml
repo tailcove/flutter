@@ -1,0 +1,12 @@
+name: tailcove_flutter_example
+description: Shows the tailcove_flutter client in a small app.
+publish_to: none
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  tailcove_flutter:
+    path: ../

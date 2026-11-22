@@ -1,0 +1,36 @@
+name: publish
+
+# pub.dev automated publishing: a pushed v* tag publishes through OIDC, no stored token.
+# Enable it once on pub.dev (package admin > Automated publishing > GitHub Actions, repository tailcove/flutter,
+# tag pattern v{{version}}, environment pub.dev).
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pub.dev
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      # Sets up the pub.dev OIDC credential that `dart pub publish` uses.
+      - uses: dart-lang/setup-dart@v1
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Check tag matches pubspec version
+        run: |
+          version="$(grep '^version:' pubspec.yaml | awk '{print $2}')"
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match pubspec.yaml version $version" >&2
+            exit 1
+          fi
+      - run: flutter pub get
+      - run: flutter test
+      - run: dart pub publish --force

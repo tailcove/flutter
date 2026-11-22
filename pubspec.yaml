@@ -1,0 +1,28 @@
+name: tailcove_flutter
+description: Flutter client for Tailcove. Sends logs and Dart and Flutter errors from your app, batched, retried and kept across restarts.
+version: 0.1.0
+homepage: https://tailcove.dev/docs/sending-logs/flutter
+repository: https://github.com/tailcove/flutter
+issue_tracker: https://github.com/tailcove/flutter/issues
+topics:
+  - logging
+  - crash-reporting
+  - error-tracking
+  - monitoring
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  clock: ^1.1.1
+  http: ">=1.1.0 <2.0.0"
+  path_provider: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  fake_async: ^1.3.1
+  flutter_lints: ">=3.0.0 <6.0.0"
